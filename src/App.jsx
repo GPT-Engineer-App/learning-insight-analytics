@@ -4,6 +4,7 @@ import VideoCall from "./pages/VideoCall.jsx";
 import NoteTaking from "./pages/NoteTaking.jsx";
 import ClassroomManagement from "./pages/ClassroomManagement.jsx";
 import AITeacher from "./pages/AITeacher.jsx";
+import TestSystem from "./pages/TestSystem.jsx";
 import Navbar from "./components/Navbar.jsx";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route exact path="/note-taking" element={<NoteTaking />} />
         <Route exact path="/classroom-management" element={<ClassroomManagement />} />
         <Route exact path="/ai-teacher" element={<AITeacher />} />
+        <Route exact path="/test-system" element={<TestSystem />} />
       </Routes>
     </Router>
   );

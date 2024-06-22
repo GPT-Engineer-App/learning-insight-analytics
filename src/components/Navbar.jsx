@@ -19,6 +19,9 @@ const Navbar = () => {
           <Button as={Link} to="/classroom-management" variant={"solid"} colorScheme={"teal"} size={"sm"} mr={4}>
             Classroom Management
           </Button>
+          <Button as={Link} to="/test-system" variant={"solid"} colorScheme={"teal"} size={"sm"} mr={4}>
+            Test System
+          </Button>
           <Button as={Link} to="/ai-teacher" variant={"solid"} colorScheme={"teal"} size={"sm"}>
             AI Teacher Online
           </Button>
