@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Container, Text, VStack, Input, Button, Box } from "@chakra-ui/react";
+import AIFaceTalk from "../components/AIFaceTalk";
 
 const AITeacher = () => {
   const [userInput, setUserInput] = useState("");
@@ -32,6 +33,7 @@ const AITeacher = () => {
             <Text>{response}</Text>
           </Box>
         )}
+        <AIFaceTalk />
       </VStack>
     </Container>
   );
