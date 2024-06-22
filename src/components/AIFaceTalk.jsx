@@ -8,9 +8,10 @@ const socket = io("http://localhost:5000");
 
 const AIFaceTalk = () => {
   const [userStream, setUserStream] = useState(null);
-  const webcamRef = useRef(null);
   const [modelsLoaded, setModelsLoaded] = useState(false);
   const [aiResponse, setAiResponse] = useState("");
+  const [isCameraOn, setIsCameraOn] = useState(true);
+  const webcamRef = useRef(null);
 
   useEffect(() => {
     const loadModels = async () => {
@@ -22,14 +23,14 @@ const AIFaceTalk = () => {
       setModelsLoaded(true);
     };
     loadModels();
-  navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
+    navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
       setUserStream(stream);
       if (webcamRef.current) {
         webcamRef.current.srcObject = stream;
       }
     });
   }, []);
-  
+
   useEffect(() => {
     socket.on("ai-video-stream", (data) => {
       const aiVideo = document.getElementById("aiVideo");
@@ -52,7 +53,7 @@ const AIFaceTalk = () => {
         faceapi.draw.drawDetections(canvas, resizedDetections);
         faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
         faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
-      // Emit the video stream to the server
+        // Emit the video stream to the server
         socket.emit("video-stream", canvas.toDataURL());
       }, 100);
     }
@@ -63,19 +64,31 @@ const AIFaceTalk = () => {
     setAiResponse("Hello! How can I assist you today?");
   };
 
+  const toggleCamera = () => {
+    if (userStream) {
+      userStream.getTracks().forEach(track => track.enabled = !track.enabled);
+      setIsCameraOn(!isCameraOn);
+    }
+  };
+
   return (
     <Box>
       <VStack spacing={4}>
         <Text fontSize="2xl">AI Face Talk</Text>
-        <Webcam
-          audio={false}
-          ref={webcamRef}
-          screenshotFormat="image/jpeg"
-          onUserMedia={handleVideoOnPlay}
-        />
+        {isCameraOn && (
+          <Webcam
+            audio={false}
+            ref={webcamRef}
+            screenshotFormat="image/jpeg"
+            onUserMedia={handleVideoOnPlay}
+          />
+        )}
         <video id="aiVideo" autoPlay playsInline />
         <Button colorScheme="teal" onClick={handleAiResponse}>
           Talk to AI
+        </Button>
+        <Button colorScheme="red" onClick={toggleCamera}>
+          {isCameraOn ? "Turn Camera Off" : "Turn Camera On"}
         </Button>
         {aiResponse && (
           <Box p={4} bg="gray.100" borderRadius="md" width="100%">
