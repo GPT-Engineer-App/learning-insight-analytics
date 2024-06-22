@@ -5,6 +5,7 @@ import NoteTaking from "./pages/NoteTaking.jsx";
 import ClassroomManagement from "./pages/ClassroomManagement.jsx";
 import AITeacher from "./pages/AITeacher.jsx";
 import TestSystem from "./pages/TestSystem.jsx";
+import StudentList from "./pages/StudentList.jsx";
 import Navbar from "./components/Navbar.jsx";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route exact path="/classroom-management" element={<ClassroomManagement />} />
         <Route exact path="/ai-teacher" element={<AITeacher />} />
         <Route exact path="/test-system" element={<TestSystem />} />
+        <Route exact path="/student-list" element={<StudentList />} />
       </Routes>
     </Router>
   );

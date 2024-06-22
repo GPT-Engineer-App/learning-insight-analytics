@@ -22,8 +22,11 @@ const Navbar = () => {
           <Button as={Link} to="/test-system" variant={"solid"} colorScheme={"teal"} size={"sm"} mr={4}>
             Test System
           </Button>
-          <Button as={Link} to="/ai-teacher" variant={"solid"} colorScheme={"teal"} size={"sm"}>
+          <Button as={Link} to="/ai-teacher" variant={"solid"} colorScheme={"teal"} size={"sm"} mr={4}>
             AI Teacher Online
+          </Button>
+          <Button as={Link} to="/student-list" variant={"solid"} colorScheme={"teal"} size={"sm"} mr={4}>
+            Student List
           </Button>
         </Flex>
       </Flex>
